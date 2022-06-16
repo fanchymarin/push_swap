@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:19:05 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/06/14 17:47:37 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/06/16 15:55:38 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@
 
 typedef struct s_stack
 {
-	int				value;
-	struct s_stack	*next;
+	int	*values;
+	int	size;
+	int	top;
 }	t_stack;
 
-void	push(t_stack **top, int num);
-void	free_stack(t_stack **top);
+void	push(t_stack *stack, int value);
+void	print_stack(t_stack *stack);
+t_stack	*init_stack(int size);
 
 #endif
