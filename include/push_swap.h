@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:19:05 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/16 14:09:18 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/16 18:48:04 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ t_stack	*handle_argv(char *argv);
 
 void	push(t_stack *stack, int value);
 int		pop(t_stack *stack);
-void	print_stack(t_stack *stack);
+void	print_stack(t_stack *stack_a, t_stack *stack_b);
 t_stack	*init_stack(int size);
+
+int		swap(t_stack *stack, int print);
+void	ss(t_stack *s_a, t_stack *s_b);
+int		rotate(t_stack *stack, int print);
+void	rr(t_stack *s_a, t_stack *s_b);
+int		reverse_rotate(t_stack *stack, int print);
+void	rrr(t_stack *s_a, t_stack *s_b);
+void	push_a(t_stack *stack_a, t_stack *stack_b);
+void	push_b(t_stack *stack_a, t_stack *stack_b);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_use.c                                        :+:      :+:    :+:   */
+/*   stack_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
+/*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/14 16:45:45 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/16 12:56:53 by fmarin-p         ###   ########.fr       */
+/*   Created: 2022/07/16 14:25:27 by fmarin-p          #+#    #+#             */
+/*   Updated: 2022/07/16 18:40:39 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,23 @@ int	pop(t_stack *stack)
 	return (stack->values[stack->top--]);
 }
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack_a, t_stack *stack_b)
 {
-	int	i;
+	int	top_a;
+	int	top_b;
 
-	i = stack->top;
-	while (i != -1)
+	top_a = stack_a->top;
+	top_b = stack_b->top;
+	while (1)
 	{
-		ft_putnbr_fd(stack->values[i--], 1);
+		if (top_a == -1 && top_b == -1)
+			break ;
+		if (top_a >= top_b && top_a > -1)
+			ft_putnbr_fd(stack_a->values[top_a--], 1);
+		ft_putstr_fd("      ", 1);
+		if (top_b > top_a && top_b > -1)
+			ft_putnbr_fd(stack_b->values[top_b--], 1);
 		ft_putstr_fd("\n", 1);
 	}
+	ft_putstr_fd("---------\n", 1);
 }
