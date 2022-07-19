@@ -6,14 +6,15 @@
 #    By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 19:28:34 by fmarin-p          #+#    #+#              #
-#    Updated: 2022/07/16 17:45:59 by fmarin-p         ###   ########.fr        #
+#    Updated: 2022/07/19 14:29:23 by fmarin-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 CFLAGS = -g -Wall -Wextra -Werror -I$(INCDIR)
 
-SRCFILES = main.c stack_op.c parsing.c algorithm_op.c algorithm_op_2.c
+SRCFILES = main.c stack_op.c parsing.c algorithm.c algorithm_op.c \
+		algorithm_op_2.c
 OBJFILES = $(SRCFILES:.c=.o)
 
 SRCOBJ = $(addprefix $(OBJDIR), $(OBJFILES))

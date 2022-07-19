@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 17:39:44 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/16 18:43:33 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:06:13 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@ void	rrr(t_stack *s_a, t_stack *s_b)
 
 void	push_a(t_stack *s_a, t_stack *s_b)
 {
-	push(s_b, pop(s_a));
+	push(s_a, pop(s_b));
 	ft_putstr_fd("pa\n", 1);
 }
 
 void	push_b(t_stack *s_a, t_stack *s_b)
 {
-	push(s_a, pop(s_b));
+	push(s_b, pop(s_a));
 	ft_putstr_fd("pb\n", 1);
 }

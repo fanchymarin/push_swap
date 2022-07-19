@@ -6,13 +6,23 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:29:37 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/16 18:46:44 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:49:47 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error(t_stack *stack)
+void	free_stacks(t_stack *s_a, t_stack *s_b)
+{
+	free(s_a->values);
+	free(s_a->order);
+	free(s_b->values);
+	free(s_b->order);
+	free(s_a);
+	free(s_b);
+}
+
+void	error_parsing(t_stack *stack)
 {
 	ft_putstr_fd("Error\n", 1);
 	free(stack->values);
@@ -32,31 +42,21 @@ t_stack	*create_stack_a(int argc, char **argv)
 		if (check_num(argv[i]) && check_dup(argv, argc, i))
 			push(stack_a, ft_atoi(argv[i]));
 		else
-			error(stack_a);
+			error_parsing(stack_a);
 	}
 	return (stack_a);
 }
 
-void	testing(t_stack *s_a, t_stack *s_b)
+void	check_scenario(t_stack *s_a, t_stack *s_b)
 {
-	push_a(s_a, s_b);
-	print_stack(s_a, s_b);
-	push_a(s_a, s_b);
-	print_stack(s_a, s_b);
-	push_a(s_a, s_b);
-	print_stack(s_a, s_b);
-	push_a(s_a, s_b);
-	print_stack(s_a, s_b);
-	rotate(s_b, 2);
-	print_stack(s_a, s_b);
-	reverse_rotate(s_a, 1);
-	print_stack(s_a, s_b);
-	rrr(s_a, s_b);
-	print_stack(s_a, s_b);
-	rr(s_a, s_b);
-	print_stack(s_a, s_b);
-	ss(s_a, s_b);
-	print_stack(s_a, s_b);
+	if (s_a->size == 2 && s_a->values[1] > s_a->values[0])
+		swap(s_a, 1);
+	else if (s_a->size <= 3)
+		small_scenario(s_a);
+	else if (s_a->size <= 5)
+		medium_scenario(s_a, s_b);
+	else
+		big_scenario(s_a, s_b);
 }
 
 int	main(int argc, char **argv)
@@ -71,8 +71,8 @@ int	main(int argc, char **argv)
 	else
 		stack_a = create_stack_a(argc, argv);
 	stack_b = init_stack(stack_a->size);
-	testing(stack_a, stack_b);
-	free(stack_a->values);
-	free(stack_a);
+	check_scenario(stack_a, stack_b);
+//	print_stack(stack_a, stack_b);
+	free_stacks(stack_a, stack_b);
 	return (0);
 }
