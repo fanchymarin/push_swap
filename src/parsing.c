@@ -6,11 +6,19 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:06:41 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/16 18:06:08 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:39:25 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	error_parsing(t_stack *stack)
+{
+	ft_putstr_fd("Error\n", 1);
+	free(stack->values);
+	free(stack);
+	exit(0);
+}
 
 int	check_num(char *num)
 {

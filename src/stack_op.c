@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:25:27 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/19 19:49:47 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:39:25 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_stack	*init_stack(int size)
 
 	stack = (t_stack *) malloc(sizeof(t_stack));
 	stack->values = (int *) malloc(sizeof(int) * size);
-	stack->order = (int *) malloc(sizeof(int) * size);
 	stack->size = size;
 	stack->top = -1;
 	return (stack);
@@ -47,28 +46,6 @@ int	pop(t_stack *stack)
 	if (stack->top <= -1)
 		stack_error(1);
 	return (stack->values[stack->top--]);
-}
-
-int	find_smallest(t_stack *stack)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i <= stack->top)
-	{
-		j = 0;
-		while (j <= stack->top)
-		{
-			if (stack->values[i] > stack->values[j])
-				break ;
-			++j;
-		}
-		if (j == stack->top + 1)
-			break ;
-		i++;
-	}
-	return (i);
 }
 
 void	print_stack(t_stack *stack_a, t_stack *stack_b)

@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:25:11 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/16 18:35:58 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:57:10 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ int	swap(t_stack *stack, int print)
 	return (0);
 }
 
-void	ss(t_stack *s_a, t_stack *s_b)
+void	ss(t_stack *a, t_stack *b)
 {
-	swap(s_a, 0);
-	swap(s_b, 0);
+	swap(a, 0);
+	swap(b, 0);
 	ft_putstr_fd("ss\n", 1);
 }
 
@@ -60,9 +60,9 @@ int	rotate(t_stack *stack, int print)
 	return (0);
 }
 
-void	rr(t_stack *s_a, t_stack *s_b)
+void	rr(t_stack *a, t_stack *b)
 {
-	rotate(s_a, 0);
-	rotate(s_b, 0);
+	rotate(a, 0);
+	rotate(b, 0);
 	ft_putstr_fd("rr\n", 1);
 }
