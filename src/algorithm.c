@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:14:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/22 15:45:03 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:42:21 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void	big_scenario(t_stack *a, t_stack *b)
 {
 	index_stack(a);
 	chunks_to_b(a, b);
+	push_back(a, b);
 }

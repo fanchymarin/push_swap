@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 18:29:37 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/22 15:42:39 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/22 20:53:05 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 	else
 		a = create_stack_a(argc, argv);
 	b = init_stack(a->size);
-	print_stack(a, b);
+//	print_stack(a, b);
 	check_scenario(a, b);
 	print_stack(a, b);
 	free_stacks(a, b);
