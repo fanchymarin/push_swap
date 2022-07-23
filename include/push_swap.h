@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/13 19:19:05 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/22 20:56:40 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:08:43 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	small_scenario(t_stack *a);
 void	medium_scenario(t_stack *a, t_stack *b);
 void	big_scenario(t_stack *a, t_stack *b);
 
-void	push_by_index(t_stack *a, t_stack *b, int i);
+void	push_by_index_a(t_stack *a, t_stack *b, int i);
+void	push_by_index_b(t_stack *a, t_stack *b, int i);
 void	chunks_to_b(t_stack *a, t_stack *b);
 void	push_back(t_stack *a, t_stack *b);
 

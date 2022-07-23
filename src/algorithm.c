@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:14:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/22 20:42:21 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/23 17:10:05 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	small_scenario(t_stack *a)
 		reverse_rotate(a, 1);
 }
 
-void	push_by_index(t_stack *a, t_stack *b, int i)
+void	push_by_index_a(t_stack *a, t_stack *b, int i)
 {
 	int	value;
 
@@ -51,11 +51,27 @@ void	push_by_index(t_stack *a, t_stack *b, int i)
 	push_b(a, b);
 }
 
+void	push_by_index_b(t_stack *a, t_stack *b, int i)
+{
+	int	value;
+
+	value = b->values[i];
+	if (i >= b->top / 2)
+	{
+		while (b->values[b->top] != value)
+			rotate(b, 2);
+	}
+	else
+		while (b->values[b->top] != value)
+			reverse_rotate(b, 2);
+	push_a(a, b);
+}
+
 void	medium_scenario(t_stack *a, t_stack *b)
 {
-	push_by_index(a, b, find_smallest(a));
+	push_by_index_a(a, b, find_smallest(a));
 	if (a->size == 5)
-		push_by_index(a, b, find_smallest(a));
+		push_by_index_a(a, b, find_smallest(a));
 	small_scenario(a);
 	push_a(a, b);
 	if (a->size == 5)
