@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:53:47 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/23 17:40:08 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/23 18:22:06 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,36 +71,37 @@ void	push_back(t_stack *a, t_stack *b)
 {
 	int	i;
 	int	j;
+	int	index;
 
 	i = a->size / 2 + 2;
 	j = a->size / 2 - 2;
 	while (b->top != -1)
 	{
 		print_stack(a, b);
-		if (!b->top)
-		{
-			push_by_index_b(a, b, 0);
-			if (a->values[a->top] > a->values[a->top - 1])
-				rotate(a, 1);
-		}
-		if (b->top == -1)
-			break ;
 		if (b->values[top_or_bottom(b, i, j)] < b->size / 2)
 		{
-			push_by_index_b(a, b, top_or_bottom(b, j + 1, j));
-			if (b->top)
-				push_by_index_b(a, b, top_or_bottom(b, j + 1, j));
+			index = top_or_bottom(b, j + 1, j);
+			while (index != -1)
+			{
+				push_by_index_b(a, b, index);
+				index = top_or_bottom(b, j + 1, j);
+			}
 			if (a->values[a->top] > a->values[a->top - 1])
 				swap(a, 1);
 			j -= 2;
 		}
 		else if (b->values[top_or_bottom(b, i, j)] > b->size / 2)
 		{
-			push_by_index_b(a, b, top_or_bottom(b, i, i - 1));
-			push_by_index_b(a, b, top_or_bottom(b, i, i - 1));
+			index = top_or_bottom(b, i, i - 1);
+			while (index != -1)
+			{
+				push_by_index_b(a, b, index);
+				index = top_or_bottom(b, i, i - 1);
+			}
 			if (a->values[a->top] > a->values[a->top - 1])
 				swap(a, 1);
-			rotate(a, 1);
+			if (a->values[a->top] == a->values[a->top - 1] - 1)
+				rotate(a, 1);
 			rotate(a, 1);
 			i += 2;
 		}
