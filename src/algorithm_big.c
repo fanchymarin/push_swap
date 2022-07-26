@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:53:47 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/23 18:22:06 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:45:04 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	top_or_bottom(t_stack *stack, int sup_limit, int inf_limit)
 
 	i = 0;
 	j = stack->top;
-	while (i < j)
+	while (i <= j)
 	{
 		if (stack->values[i] > sup_limit || stack->values[i] < inf_limit
 			|| stack->values[i] == stack->size / 2)
@@ -39,21 +39,21 @@ int	top_or_bottom(t_stack *stack, int sup_limit, int inf_limit)
 	return (-1);
 }
 
-void	chunks_to_b(t_stack *a, t_stack *b)
+void	chunks_to_b(t_stack *a, t_stack *b, int chunk_size)
 {
 	int	i;
 	int	left_to_push;
 	int	range;
 
-	range = a->size / 2;
+	range = a->size / 2 + 1;
 	left_to_push = a->size - range;
 	while (a->top)
 	{
 		while (left_to_push)
 		{
-			i = top_or_bottom(a, range + CHUNK_SIZE, range);
+			i = top_or_bottom(a, range + chunk_size, range);
 			if (i == -1)
-				range += CHUNK_SIZE;
+				range += chunk_size;
 			else
 			{
 				push_by_index_a(a, b, i);
@@ -73,37 +73,20 @@ void	push_back(t_stack *a, t_stack *b)
 	int	j;
 	int	index;
 
-	i = a->size / 2 + 2;
-	j = a->size / 2 - 2;
+	i = a->size / 2 + 1;
+	j = a->size / 2 - 1;
 	while (b->top != -1)
 	{
-		print_stack(a, b);
-		if (b->values[top_or_bottom(b, i, j)] < b->size / 2)
+		index = top_or_bottom(b, i, j);
+		if (index == -1)
+			break ;
+		push_by_index_b(a, b, index);
+		if (a->values[a->top] > a->size / 2)
 		{
-			index = top_or_bottom(b, j + 1, j);
-			while (index != -1)
-			{
-				push_by_index_b(a, b, index);
-				index = top_or_bottom(b, j + 1, j);
-			}
-			if (a->values[a->top] > a->values[a->top - 1])
-				swap(a, 1);
-			j -= 2;
-		}
-		else if (b->values[top_or_bottom(b, i, j)] > b->size / 2)
-		{
-			index = top_or_bottom(b, i, i - 1);
-			while (index != -1)
-			{
-				push_by_index_b(a, b, index);
-				index = top_or_bottom(b, i, i - 1);
-			}
-			if (a->values[a->top] > a->values[a->top - 1])
-				swap(a, 1);
-			if (a->values[a->top] == a->values[a->top - 1] - 1)
-				rotate(a, 1);
 			rotate(a, 1);
-			i += 2;
+			i++;
 		}
+		else
+			j--;
 	}
 }

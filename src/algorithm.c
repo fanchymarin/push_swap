@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 14:14:25 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/23 17:10:05 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:44:56 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,37 +78,9 @@ void	medium_scenario(t_stack *a, t_stack *b)
 		push_a(a, b);
 }
 
-void	index_stack(t_stack *stack)
-{
-	int	i;
-	int	j;
-	int	count;
-	int	*order;
-
-	i = 0;
-	j = 0;
-	order = (int *) malloc(sizeof(int) * stack->size);
-	while (i < stack->size)
-	{
-		j = 0;
-		count = 1;
-		while (j < stack->size)
-		{
-			if (stack->values[i] > stack->values[j])
-				count++;
-			++j;
-		}
-		order[i++] = count;
-	}
-	i = -1;
-	while (++i < stack->size)
-		stack->values[i] = order[i];
-	free(order);
-}
-
 void	big_scenario(t_stack *a, t_stack *b)
 {
 	index_stack(a);
-	chunks_to_b(a, b);
+	chunks_to_b(a, b, (0.075 * a->size + 12.5));
 	push_back(a, b);
 }
