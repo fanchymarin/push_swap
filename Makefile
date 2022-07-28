@@ -6,7 +6,7 @@
 #    By: fmarin-p <fmarin-p@student-42madrid.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/13 19:28:34 by fmarin-p          #+#    #+#              #
-#    Updated: 2022/07/26 18:01:43 by fmarin-p         ###   ########.fr        #
+#    Updated: 2022/07/28 15:07:45 by fmarin-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,6 @@ all: $(NAME)
 $(NAME): $(SRCOBJ)
 	$(MAKE) bonus -C libft
 	gcc -o $@ $^ libft/libft.a
-	cp $@ push_swap_tester/
 
 $(OBJDIR)%.o: $(SRCDIR)%.c
 	mkdir -p obj

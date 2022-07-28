@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:53:47 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/26 18:45:04 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/07/28 14:28:10 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,41 @@ void	chunks_to_b(t_stack *a, t_stack *b, int chunk_size)
 	}
 }
 
+void	push_by_pairs(t_stack *a, t_stack *b, int *i, int *j)
+{
+	if (a->values[a->top] == *j)
+	{
+		push_by_index_b(a, b, top_or_bottom(b, *j + 1, *j + 1));
+		swap(a, 1);
+		*j -= 2;
+	}
+	else if (a->values[a->top] == *i)
+	{
+		push_by_index_b(a, b, top_or_bottom(b, *i - 1, *i - 1));
+		rotate(a, 1);
+		rotate(a, 1);
+		*i += 2;
+	}
+}
+
 void	push_back(t_stack *a, t_stack *b)
 {
 	int	i;
 	int	j;
-	int	index;
 
-	i = a->size / 2 + 1;
-	j = a->size / 2 - 1;
+	i = a->size / 2 + 2;
+	j = a->size / 2 - 2;
 	while (b->top != -1)
 	{
-		index = top_or_bottom(b, i, j);
-		if (index == -1)
-			break ;
-		push_by_index_b(a, b, index);
-		if (a->values[a->top] > a->size / 2)
+		push_by_index_b(a, b, top_or_bottom(b, i, j));
+		if (a->values[a->top] == j + 1)
+			j--;
+		else if (a->values[a->top] == i - 1)
 		{
 			rotate(a, 1);
 			i++;
 		}
 		else
-			j--;
+			push_by_pairs(a, b, &i, &j);
 	}
 }
