@@ -6,7 +6,7 @@
 /*   By: fmarin-p <fmarin-p@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:53:47 by fmarin-p          #+#    #+#             */
-/*   Updated: 2022/07/28 19:18:43 by fmarin-p         ###   ########.fr       */
+/*   Updated: 2022/08/02 16:25:24 by fmarin-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	top_or_bottom(t_stack *stack, int sup_limit, int inf_limit)
 			|| stack->values[j] == stack->size / 2)
 			--j;
 		if ((stack->values[i] <= sup_limit && stack->values[i] >= inf_limit)
-			&& (stack->values[j] <= sup_limit && stack->values[j] >= inf_limit))
+			&& (stack->values[j] <= sup_limit && stack->values[j] >= inf_limit)
+			&& stack->values[i] != stack->size / 2 && stack->values[j]
+			!= stack->size / 2)
 		{
 			if (i < (stack->top - j))
 				return (i);
@@ -37,6 +39,26 @@ int	top_or_bottom(t_stack *stack, int sup_limit, int inf_limit)
 		}
 	}
 	return (-1);
+}
+/*
+void	rest_of_chunk(t_stack *a, t_stack *b, int chunk_size)
+{
+	int	range_up;
+	int	range_down;
+
+	range_up = a->size;
+	range_down = 0;
+	while (a->top)
+	{
+		while (top_or_bottom(a, range_up, range_up - chunk_size) != -1
+			|| top_or_bottom(a, range_down + chunk_size, range_down) != -1)
+		{
+			push_by_index_a(a, b, top_or_bottom(a, range_up, range_up - chunk_size));
+			push_by_index_a(a, b, top_or_bottom(a, range_down + chunk_size, range_down));
+		}
+		range_up -= chunk_size;
+		range_down += chunk_size;
+	}
 }
 
 void	chunks_to_b(t_stack *a, t_stack *b, int chunk_size)
@@ -52,36 +74,31 @@ void	chunks_to_b(t_stack *a, t_stack *b, int chunk_size)
 		left_to_push = chunk_size / 2 + 1;
 		while (--left_to_push)
 		{
-			push_by_index_a(a, b, top_or_bottom(a, range_up, range_up - chunk_size));
-			push_by_index_a(a, b, top_or_bottom(a, range_down + chunk_size, range_down));
+			push_by_index_a(a, b, top_or_bottom(a,
+					range_up, range_up - chunk_size));
+			push_by_index_a(a, b, top_or_bottom(a,
+					range_down + chunk_size, range_down));
 		}
 		range_up += chunk_size;
 		range_down -= chunk_size;
 	}
-	range_up = a->size;
-	range_down = 0;
-	while (range_down < range_up)
-	{
-		while (!push_by_index_a(a, b, top_or_bottom(a, range_up, range_up - chunk_size)) &&	!push_by_index_a(a, b, top_or_bottom(a, range_down + chunk_size, range_down)));
-		range_up -= chunk_size;
-		range_down += chunk_size;
-	}
-	print_stack(a, b);
-	exit(1);
+	rest_of_chunk(a, b, chunk_size);
 }
-/*
+*/
+
 void	chunks_to_b(t_stack *a, t_stack *b, int chunk_size)
 {
 	int	left_to_push;
 	int	range;
 
-	range = a->size / 2 + 1;
+	range = a->size / 2;
 	left_to_push = a->size - range;
 	while (a->top)
 	{
 		while (left_to_push)
 		{
-			if (push_by_index_a(a, b, top_or_bottom(a, range + chunk_size, range)))
+			if (push_by_index_a(a, b,
+					top_or_bottom(a, range + chunk_size, range)))
 				range += chunk_size;
 			else
 				--left_to_push;
@@ -92,7 +109,7 @@ void	chunks_to_b(t_stack *a, t_stack *b, int chunk_size)
 		range = 1;
 	}
 }
-*/
+
 void	push_by_pairs(t_stack *a, t_stack *b, int *i, int *j)
 {
 	if (a->values[a->top] == *j)
