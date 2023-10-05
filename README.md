@@ -1,5 +1,9 @@
 # Push_swap - ✅Grade 80/100
 
+#### Grade rating
+- ✅ = Okay project
+- ⭐ = Outstanding project
+
 ## Overview
 
 Push_swap is a sorting program that aims to efficiently sort data on a stack using a limited set of instructions while minimizing the number of actions. This project offered me the chance to manipulate various sorting algorithms and choose the most suitable solution for an optimized data sorting algorithm.
